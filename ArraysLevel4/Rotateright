@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, i, temp;
+
+    // Input size
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    // Input elements
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Right rotation by 1
+    temp = arr[n - 1];
+    for (i = n - 1; i > 0; i--) {
+        arr[i] = arr[i - 1];
+    }
+    arr[0] = temp;
+
+    // Output
+    printf("Array after right rotation by 1:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
+}
