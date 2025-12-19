@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    int a[] = {1, 2, 3, 4};
+    int b[] = {1, 2, 3, 4};
+    int n = 4, i, flag = 1;
+
+    for (i = 0; i < n; i++) {
+        if (a[i] != b[i]) {
+            flag = 0;
+            break;
+        }
+    }
+
+    if (flag)
+        printf("Arrays are equal");
+    else
+        printf("Arrays are not equal");
+
+    return 0;
+}
