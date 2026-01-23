@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Create node
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Insert at end
+struct Node* insertEnd(struct Node* head, int value) {
+    struct Node* newNode = createNode(value);
+
+    if (head == NULL)
+        return newNode;
+
+    struct Node* temp = head;
+    while (temp->next != NULL)
+        temp = temp->next;
+
+    temp->next = newNode;
+    return head;
+}
+
+// Check if list is sorted
+int isSorted(struct Node* head) {
+    if (head == NULL || head->next == NULL)
+        return 1;   // Empty or single node list is sorted
+
+    struct Node* temp = head;
+
+    while (temp->next != NULL) {
+        if (temp->data > temp->next->data)
+            return 0;   // Not sorted
+        temp = temp->next;
+    }
+    return 1;   // Sorted
+}
+
+// Display list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Main function
+int main() {
+    struct Node* head = NULL;
+    int n, value;
+
+    printf("Enter number of nodes: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++) {
+        printf("Enter value %d: ", i + 1);
+        scanf("%d", &value);
+        head = insertEnd(head, value);
+    }
+
+    display(head);
+
+    if (isSorted(head))
+        printf("Linked list is sorted\n");
+    else
+        printf("Linked list is NOT sorted\n");
+
+    return 0;
+}
+
