@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+void removeDuplicates(struct Node *head) {
+    struct Node *curr = head;
+    struct Node *ptr, *prev;
+
+    while (curr != NULL) {
+        prev = curr;
+        ptr = curr->next;
+
+        while (ptr != NULL) {
+            if (curr->data == ptr->data) {
+                prev->next = ptr->next;
+                free(ptr);
+                ptr = prev->next;
+            } else {
+                prev = ptr;
+                ptr = ptr->next;
+            }
+        }
+        curr = curr->next;
+    }
+}
