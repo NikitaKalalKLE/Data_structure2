@@ -1,0 +1,35 @@
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* rotateLeft(struct Node* head, int k) {
+    if (!head || k == 0)
+        return head;
+
+    struct Node *curr = head;
+    int length = 1;
+
+    // Find length and last node
+    while (curr->next != NULL) {
+        curr = curr->next;
+        length++;
+    }
+
+    // Make circular
+    curr->next = head;
+
+    k = k % length;
+    int steps = k;
+
+    // Move to new tail
+    curr = head;
+    for (int i = 1; i < steps; i++)
+        curr = curr->next;
+
+    // New head
+    head = curr->next;
+    curr->next = NULL;
+
+    return head;
+}
