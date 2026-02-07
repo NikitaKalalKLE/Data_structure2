@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *prev;
+    struct Node *next;
+};
+
+void sortDLL(struct Node *head) {
+    struct Node *i, *j;
+    int temp;
+
+    for (i = head->next; i != NULL; i = i->next) {
+        j = i;
+        while (j->prev != NULL && j->prev->data > j->data) {
+            // swap data
+            temp = j->data;
+            j->data = j->prev->data;
+            j->prev->data = temp;
+
+            j = j->prev;
+        }
+    }
+}
+
+// Utility function to display list
+void display(struct Node *head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
